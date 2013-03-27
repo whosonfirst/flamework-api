@@ -5,26 +5,21 @@
 
 	#################################################################
 
-	function oauth_onedotfive_prepare_request($args, $app_secret){
+	function oauth_onedotfive_sign_request($args, $app_secret, $user_secret=null){
 
-		$args['oauth_onedotfive_app_secret'] = $app_secret;
-		$args['oauth_onedotfive_nonce'] = $app_secret;
-		$args['oauth_onedotfive_timestamp'] = $app_secret;
-	}
-	
-	#################################################################
-
-	function oauth_onedotfive_sign_request($args, $app_secret, $user_secret){
-
-		# Use $app_secret as a salt somehow ?
+		# lower case all the args?
 
 		ksort($args);
 
-		$raw = http_build_query($args);
+		$sig = http_build_query($args);
 
-		$sig = hash_hmac('sha256', $raw, $user_secret, true);
+		$sig = hash_hmac('sha512', $sig, $app_secret, true);
+
+		if ($user_secret){
+			$sig = hash_hmac('sha512', $sig, $user_secret, true);
+		}
+
 		$enc = base64_encode($sig);
-
 		return $enc;
 	}
 
@@ -71,4 +66,3 @@
 	#################################################################
 
 	# the end
-
