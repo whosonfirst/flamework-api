@@ -39,14 +39,20 @@
 # This all (especially the oauth2 auth/token stuff) relies on the
 # HTTPS rules for logged in users (20121024/straup)
 
+# API documentation
+
 RewriteRule  ^api/?$			api.php		[L]
 RewriteRule  ^api/methods/?$		api_methods.php	[L]
 RewriteRule  ^api/methods/(.*)/?$	api_method.php?method=$1&%{QUERY_STRING}		[L]
+
+# API keys (like OMG)
 
 RewriteRule  ^api/keys/?$						api_keys.php?%{QUERY_STRING} [L]
 RewriteRule  ^api/keys/register/?$					api_keys_register.php?%{QUERY_STRING} [L]
 RewriteRule  ^api/keys/([a-zA-Z0-9]+)/?$				api_key.php?api_key=$1&%{QUERY_STRING} [L]
 RewriteRule  ^api/keys/([a-zA-Z0-9]+)/tokens(/page([0-9]+))?/?$		api_key_tokens.php?api_key=$1&page=$3&%{QUERY_STRING} [L]
+
+# OAuth 2.0
 
 RewriteRule  ^api/oauth2/?$						api_oauth2.php?%{QUERY_STRING} [L]
 RewriteRule  ^api/oauth2/authenticate/?$				api_oauth2_authenticate.php?%{QUERY_STRING} [L]
@@ -55,5 +61,17 @@ RewriteRule  ^api/oauth2/access_token/?$				api_oauth2_access_token.php?%{QUERY_
 
 RewriteRule  ^api/oauth2/tokens(/page([0-9]+))?/?$			api_oauth2_tokens.php?page=$2&%{QUERY_STRING} [L]
 RewriteRule  ^api/oauth2/tokens/([a-zA-Z0-9]+)/?$			api_oauth2_token.php?api_key=$1&%{QUERY_STRING} [L]
+
+# OAuth 1.5
+
+RewriteRule  ^api/oauth1.5/?$						api_oauth_onedotfive.php?%{QUERY_STRING} [L]
+RewriteRule  ^api/oauth1.5/authenticate/?$				api_oauth_onedotfive_authenticate.php?%{QUERY_STRING} [L]
+RewriteRule  ^api/oauth1.5/authenticate/like-magic/?$			api_oauth_onedotfive_authenticate_like_magic.php?%{QUERY_STRING} [L]
+RewriteRule  ^api/oauth1.5/access_token/?$				api_oauth_onedotfive_access_token.php?%{QUERY_STRING} [L]
+
+RewriteRule  ^api/oauth1.5/tokens(/page([0-9]+))?/?$			api_oauth_onedotfive_tokens.php?page=$2&%{QUERY_STRING} [L]
+RewriteRule  ^api/oauth1.5/tokens/([a-zA-Z0-9]+)/?$			api_oauth_onedotfive_token.php?api_key=$1&%{QUERY_STRING} [L]
+
+# The actual API dispatcher
 
 RewriteRule  ^rest/?$		api_rest.php?%{QUERY_STRING}  [L]
