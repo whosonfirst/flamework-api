@@ -140,6 +140,8 @@
 		$id = dbtickets_create(64);
 
 		$token = api_oauth_onedotfive_access_tokens_generate_token();
+		$secret = api_oauth_onedotfive_access_tokens_generate_secret();
+
 		$now = time();
 
 		$row = array(
@@ -148,6 +150,7 @@
 			'api_key_id' => $key['id'],
 			'user_id' => $user['id'],
 			'access_token' => $token,
+			'token_secret' => $secret,
 			'created' => $now,
 			'last_modified' => $now,
 		);
@@ -248,6 +251,13 @@
 	#################################################################
 
 	function api_oauth_onedotfive_access_tokens_generate_token(){
+		$token = md5(random_string(100) . time());
+		return $token;
+	}
+
+	#################################################################
+
+	function api_oauth_onedotfive_access_tokens_generate_secret(){
 		$token = md5(random_string(100) . time());
 		return $token;
 	}

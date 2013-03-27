@@ -77,7 +77,7 @@
 		# that's not part of the spec if you enable the two features simultaneously
 		# don't be surprised when hilarity ensues. Good times. (20121026/straup)
 
-		# First API keys
+		# First API keys – remember we might just be using cookie auth...
  
 		if (features_is_enabled("api_require_keys")){
 

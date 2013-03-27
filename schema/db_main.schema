@@ -56,6 +56,7 @@ CREATE TABLE `OAuthOnedotfiveAccessTokens` (
   `user_id` int(11) unsigned NOT NULL,
   `api_key_id` bigint(20) unsigned NOT NULL,
   `access_token` varchar(64) NOT NULL,
+  `token_secret` varchar(64) NOT NULL,
   `created` int(11) unsigned NOT NULL,
   `perms` tinyint(3) unsigned NOT NULL,
   `last_modified` int(11) unsigned NOT NULL,

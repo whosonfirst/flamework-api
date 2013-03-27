@@ -48,6 +48,10 @@
 		$this_len = strlen($this_sig);
 		$that_len = strlen($that_sig);
 
+		if ((! $this_len) || (! $that_len)){
+			return false;
+		}
+
 		if ($this_len !== $that_len){
 			return false;
 		}
