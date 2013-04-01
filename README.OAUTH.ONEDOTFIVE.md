@@ -1,7 +1,7 @@
 OAuth 1.5
 --
 
-This document is incomplete.
+This document is incomplete. Also don't get hung up on all the talk of "grasshoppers". It's just a place-holder while this is all being fleshed out.
 
 Applications
 --
@@ -73,7 +73,9 @@ Short-lived access tokens
 
 Or: "stateless" applications (or "single-page JS" applications)
 
-* This endpoint is controlled by a feature flag; not required to be implemented
+* Not required to be implemented. This is helper glue for stateless applications.
+ 
+* Functions only as a way for stateless apps to retrieve a TTL-restricted grasshopper key and TTL-restricted auth token using a separate endpoint, like `/oauth1.5/grasshopper/'
 
 * Everything must be done over SSL
 
