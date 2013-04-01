@@ -96,4 +96,6 @@ Signatures
 
 * Signatures are further hashed using the user secret if the request is meant to be "authed"
 
+* SHA256 / HMAC
+
 * Something about binary/multipart uploads and md5sum...
