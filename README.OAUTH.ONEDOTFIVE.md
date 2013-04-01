@@ -99,3 +99,8 @@ Signatures
 * SHA256 / HMAC
 
 * Something about binary/multipart uploads and md5sum...
+
+SSL and HTTPS
+--
+
+Unless otherwise noted the use of encrypted connections for API requests is encouraged but not required.
