@@ -1,34 +1,52 @@
 {capture assign="page_title"}API{/capture}
 {include file="inc_head.txt"}
 
-{capture assign="api_request_host"}{if $cfg.api_abs_root_url}{$cfg.api_abs_root_url}{else}{$cfg.abs_root_url}{/if}{/capture}
-
 {capture assign="title"}Application Programming Interface (API){/capture}
 {include file="inc_api_header.txt" title=$title}
 
 {if "api_documentation"|@features_is_enabled}
 
-<p>{$cfg.site_name|escape} offers a <code>could-play-REST-on-TV</code> style application programming interface (API) for developers to use in their products and services. API requests are made by passing one or more parameters to:</p>
+<div class="api-sect">
+<p><a href="{$cfg.abs_root_url}">{$cfg.site_name|escape}</a> provides a REST-ish style application programming interface (API) for developers to use in their products and services. API requests are made by passing one or more query parameters to:</p>
 
-<p style="text-align:center;"><code>{$api_request_host}rest/</code></p>
-
-<p>Unless otherwise noted API methods can be called using the HTTP <code>GET</code> request method. API responses may be returned in a number of formats which at the moment means: only <code>JSON</code>.</p>
-
-{if $cfg.api_auth_type=='oauth2'}
-
-<p>We require <a href="{$cfg.abs_root_url}api/oauth2/">OAuth (version 2) access tokens</a> to monitor and limit access to the API.</p>
-
-{if "api_authenticate_self"|@features_is_enabled}
-<p>If you are <strong>not</strong> a developer and would like to try out the API then <a href="{$cfg.abs_root_url}api/oauth2/authenticate/like-magic/">you should visit this page</a> to create an access token for yourself. If you are a developer then you probably want to start by <a href="{$cfg.abs_root_url}api/keys/register/">creating an API key</a>.</p>
-{/if}
-
-{/if}
+<p class="api-link"><code>{$cfg.api_abs_root_url}{$cfg.api_endpoint}</code></p>
 
 <p>Please consult the <a style="text-decoration:underline !important;" href="{$cfg.abs_root_url}api/methods/">API method documentation</a> for complete details.</p>
 
+</div>
+
+{if $cfg.api_auth_type=='oauth2'}
+
+{if "api_authenticate_self"|@features_is_enabled}
+<div class="api-sect">
+
+<h3>If you are not a developer</h3>
+
+<p>If you are <strong>not</strong> a developer and would like to try out the API then <a href="{$cfg.abs_root_url}api/oauth2/authenticate/like-magic/">you should visit this page</a> to create an access token for yourself.</p>
+</div>
+{/if}
+
+<div class="api-sect">
+
+<h3>If you are a developer</h3>
+
+<p>If you are a developer then you probably want to start by <a href="{$cfg.abs_root_url}api/keys/register/">creating an API key</a>.</p>
+
+<p><a href="{$cfg.abs_root_url}api/oauth2/">OAuth (version 2) access tokens</a> are used to monitor and limit access to the API. Not all flavours of OAuth2 token-dancing are supported. Applications need to be configured with a fixed callback URL on the server-side and request access tokens by authenticating users using grant tokens.</p>
+
+</div>
+
+{/if}
+
+</div>
+
 {else}
 
+<div class="api-sect">
+
 <p>There is currently no public API for playing with the Cooper-Hewitt collection. But there will be. We promise.</p>
+
+</div>
 
 {/if}
 

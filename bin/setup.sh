@@ -24,7 +24,8 @@ cp ${API}/www/templates/*.txt ${PROJECT}/www/templates/
 echo "copying library code to ${PROJECT}"
 cp ${API}/www/include/*.php ${PROJECT}/www/include/
 
-cp -R ${API}/www/include/config.api.examples ${PROJECT}/www/include/
+echo "copying script (bin) files to ${PROJECT}"
+cp ${API}/www/bin/*.php ${PROJECT}/www/bin/
 
 YMD=`date "+%Y%m%d"`
 mkdir ${PROJECT}/schema/alters
