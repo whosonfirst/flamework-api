@@ -10,7 +10,7 @@
 	loadlib("api_spec");
 
 	$spec = array(
-		"output" => array("flag" => "o", "required" => 1, "help" => "..."),
+		"output" => array("flag" => "o", "required" => 0, "help" => "..., default is STDOUT"),
 		"all" => array("flag" => "a", "required" => 0, "boolean" => 1, "help" => "..."),
 		"exclude" => array("flag" => "e", "required" => 0, "help" => "..."),
 		# something about abs_root_url here...
@@ -38,8 +38,14 @@
 	$exclude = ($opts['exclude']) ? explode(",", $opts['exclude']) : array();
 
 	#
-	
-	$fh = fopen($opts['output'], 'w');
+
+	if ($opts['output']){	
+		$fh = fopen($opts['output'], 'w');
+	}
+
+	else {
+		$fh = fopen("php://output", "w");
+	}
 
 	# $GLOBALS['smarty']->assign("page_title", "{$GLOBALS['cfg']['site_name']} API documentation");
 	# fwrite($fh, $GLOBALS['smarty']->fetch("inc_head.txt"));
@@ -76,8 +82,6 @@
 			continue;
 		}
 
-		echo "adding {$method_name}\n";
-
 		$rsp = api_spec_utils_example_for_method($method_name);
 
 		if ($rsp['ok']){
@@ -91,9 +95,6 @@
 	}
 
 	# fwrite($fh, $GLOBALS['smarty']->fetch("inc_foot.txt"));
-
-	echo "--\n";
-	echo "done\n\n";
 
 	fclose($fh);
 
