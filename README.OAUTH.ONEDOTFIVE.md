@@ -106,3 +106,26 @@ SSL and HTTPS
 --
 
 Unless otherwise noted the use of encrypted connections for API requests is encouraged but not required.
+
+Crazy talk???
+--
+
+Maybe, yes. Go read [this essay on (the impossibility of) Javascript cryptography](http://www.matasano.com/articles/javascript-cryptography/). Everything the author says is true.
+
+The "grasshopper" keys/secrets are, ultimately, a lot of busy work to preserve the semantics of the signing process and to a lesser degree the roles in delegated auth: that there is a service, an application and a user.
+
+It also has to be done over SSL for all the reasons that the author cites.
+
+At which point it is perfectly reasonable to ask: Why not just use the access token delivered to the browser, per the spec? Especially if it meant to have a fixed TTL.
+
+But then you're in a position where have to embrace the same semantics (a single master token) for not-single-page-javascript applications.
+
+Or you end up having to choose one or the other and/or modify the server side of things to account for multiple types of authentication or authorization.
+
+I still think that signed request and shared secrets is a good model.
+
+For starters, it means that leaking a single URL doesn't compromise everything else and doesn't mean that you need to promote things like passing around tokens in auth headers as a preventative. Hypermedia keeners aside the auth-in-header thing smacks of a clumsy work around to the problem of parameter based method calls and someone forgetting to type the "s" at the end of https.
+
+So, yes. It's absolutely extra work for JS people and introduces extra dependencies, namely the crypto code to do SHA-256 (or whatever).
+
+And all of the risks around even temporary signing secrets leaking in a JS context are real and valid. Thus the temporary nature of the secrets and the part where they need to be enabled by a developer explicitly. 
