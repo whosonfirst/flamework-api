@@ -4,7 +4,7 @@ var flamework = flamework || {};
 
   api = new flamework.api();
   api.set_handler('endpoint', lampzen.api.endpoint);
-  api.set_handler('sitetoken', lampzen.api.sitetoken);
+  api.set_handler('accesstoken', lampzen.api.accesstoken);
 
 */
 
@@ -18,7 +18,7 @@ flamework.api = function(){
 
 	'_handlers': {
 	    'endpoint': null_handler,
-	    'sitetoken': null_handler,
+	    'accesstoken': null_handler,
 	},
 
 	'set_handler': function(target, handler){
@@ -92,14 +92,14 @@ flamework.api = function(){
 		
 	    if (! form_data.access_token){
 
-		var get_sitetoken = self.get_handler('sitetoken');
+		var get_accesstoken = self.get_handler('accesstoken');
 
-		if (! get_sitetoken){
-		    dothis_onerror(self.destruct("there is no sitetoken handler"));
+		if (! get_accesstoken){
+		    dothis_onerror(self.destruct("there is no accesstoken handler"));
 		    return false;
 		}
 
-		form_data.append('access_token', get_sitetoken());
+		form_data.append('access_token', get_accesstoken());
 	    }
 		
 	    var onload = function(rsp){
