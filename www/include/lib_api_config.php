@@ -37,6 +37,10 @@
 
 		# Build the 'api_abs_root_url' based on everything above
 
+		if ($GLOBALS['cfg']['abs_root_suffix']){
+			$GLOBALS['cfg']['api_abs_root_url'] = $GLOBALS['cfg']['api_abs_root_url'] . $GLOBALS['cfg']['abs_root_suffix'] . "/";
+		}
+
 		$GLOBALS['cfg']['api_abs_root_url'] = "{$GLOBALS['cfg']['api_server_scheme']}://{$GLOBALS['cfg']['api_server_name']}" . "/";
 
 		# If I have an API specific subdomain/prefix then check to see if I am already
