@@ -15,9 +15,9 @@ _This document should NOT be considered authoritative or informative in any mean
   - https://www.flickr.com/services/api/
   - https://www.flickr.com/services/api/misc.overview.html
 
-  - https://whosonfirst.mapzen.com/api/methods/
-  - https://whosonfirst.mapzen.com/api/methods/api.spec.methods
-  - https://whosonfirst.mapzen.com/api/methods/api.spec.methods/explore/
+  - https://collection.cooperhewitt.org/api/methods/
+  - https://collection.cooperhewitt.org/api/methods/api.spec.methods
+  - https://collection.cooperhewitt.org/api/methods/api.spec.methods/explore/
   - https://github.com/whosonfirst/flamework-api/blob/master/www/include/config_api_methods.php
   
 # things not discussed
