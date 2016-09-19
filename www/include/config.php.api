@@ -1,5 +1,6 @@
+	# START OF flamework-api stuff
+	
 	# API methods and "blessings" are defined at the bottom
-
 	# API feature flags
 
 	$GLOBALS['cfg']['enable_feature_api'] = 1;
@@ -113,4 +114,4 @@
 		'methods',
 	);
 
-?>
+	# END OF flamework-api stuff
